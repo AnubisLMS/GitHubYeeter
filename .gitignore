@@ -1,3 +1,5 @@
 *.json
 *.txt
+*.tar.gz
+*.tgz
 os3224/
