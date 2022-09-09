@@ -28,11 +28,17 @@ def backup_delete(repo):
             'Authorization': f'Bearer {token}',
         },
     )
-    print(r.status_code)
-    return True
+    match r.status_code:
+        case 404 | 204:
+            return True
+        case _:
+            return repo
 
 with multiprocessing.Pool(16) as pool:
-    repos = json.load(open('repos.json', 'r'))
+    fp = 'repos.json'
+    if os.path.exists('failed.json'):
+        fp = 'repos.json'
+    repos = json.load(open(fp, 'r'))
     res = pool.map(backup_delete, repos)
     failed = list(filter(lambda x: isinstance(x, str), res))
     print(failed)
