@@ -12,7 +12,7 @@ page = 0
 last_len = 1
 repos = []
 
-day = datetime.datetime(2022, 8, 7).replace(tzinfo=pytz.UTC)
+day = datetime.datetime(2023, 9, 1).replace(tzinfo=pytz.UTC)
 
 while last_len != 0:
     print(f'page = {page}')
