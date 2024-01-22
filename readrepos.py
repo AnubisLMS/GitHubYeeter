@@ -12,7 +12,7 @@ page = 0
 last_len = 1
 repos = []
 
-day = datetime.datetime(2023, 9, 1).replace(tzinfo=pytz.UTC)
+include_created_before = datetime.datetime(2024, 1, 19).replace(tzinfo=pytz.UTC)
 
 while last_len != 0:
     print(f'page = {page}')
@@ -31,7 +31,7 @@ while last_len != 0:
     )
     data =res.json()
     for repo in data:
-        if day < dateutil.parser.parse(repo['created_at']):
+        if include_created_before < dateutil.parser.parse(repo['created_at']):
             continue
         if repo['is_template'] is True:
             continue
